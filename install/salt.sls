@@ -3,11 +3,13 @@
 {# Import global parameters that source from grains and pillars #}
 {% import 'args.jinja' as args %}
 
-install_salt_repo:
-  pkg.installed:
-    - name: salt_repo
-    - sources:
-      - salt-repo-latest-1: https://repo.saltstack.com/yum/redhat/salt-repo-latest-{{ args.repo_pkg_version }}.el{{ args.os_release }}.noarch.rpm
+latest_salt_pkgrepo:
+  pkgrepo.managed:
+    - name: saltstack-latest
+    - humanname: SaltStack latest repo for RHEL/CentOS $releasever
+    - baseurl: https://repo.saltstack.com/yum/redhat/$releasever/$basearch/latest
+    - gpgcheck: 1
+    - gpgkey: https://repo.saltstack.com/yum/redhat/$releasever/$basearch/latest/SALTSTACK-GPG-KEY.pub
 
 install_salt_minion:
   pkg.installed:
@@ -15,4 +17,4 @@ install_salt_minion:
       - salt-minion
       - salt-master
     - require:
-      - pkg: install_salt_repo
+      - pkgrepo: latest_salt_pkgrepo
