@@ -1,4 +1,5 @@
-{% set os_release = grains.get('lsb_distrib_release', '')  %}
+{% set os_release = grains.get('osmajorrelease', '')  %}
+{% set repo_pkg_version = salt['pillar.get']('jenkins:salt:repo_pkg_version', '')  %}
 
-{% set minion_id = salt['pillar.get']('jenkins.salt.minion.minion_id', '') %}
-{% set master_id = salt['pillar.get']('jenkins.salt.master.master_id', '') %}
+{% set minion_id = salt['pillar.get']('jenkins:salt:minion:minion_id', '') %}
+{% set master_id = salt['pillar.get']('jenkins:salt:master:master_id', '') %}

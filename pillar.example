@@ -1,0 +1,7 @@
+jenkins:
+  salt:
+    repo_pkg_version: '1'
+    minion:
+      minion_id: slave_node
+    master:
+      master_id: salt

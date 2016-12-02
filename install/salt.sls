@@ -7,7 +7,7 @@ install_salt_repo:
   pkg.installed:
     - name: salt_repo
     - sources:
-      - salt-repo-latest-1: https://repo.saltstack.com/yum/redhat/salt-repo-latest-1.el{{ args.os_release }}.noarch.rpm
+      - salt-repo-latest-1: https://repo.saltstack.com/yum/redhat/salt-repo-latest-{{ args.repo_pkg_version }}.el{{ args.os_release }}.noarch.rpm
 
 install_salt_minion:
   pkg.installed:
